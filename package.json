@@ -1,0 +1,28 @@
+{
+  "name": "web-lightbulb",
+  "version": "1.0.0",
+  "description": "Smart Light Bulb Web App",
+  "main": "index.js",
+  "scripts": {
+    "start": "live-server web"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/urish/web-lightbulb.git"
+  },
+  "keywords": [
+    "lighting",
+    "web bluetooth",
+    "iot",
+    "bluetooth"
+  ],
+  "author": "Uri Shaked",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/urish/web-lightbulb/issues"
+  },
+  "homepage": "https://github.com/urish/web-lightbulb#readme",
+  "devDependencies": {
+    "live-server": "1.0.0"
+  }
+}
