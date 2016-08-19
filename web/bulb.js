@@ -6,6 +6,7 @@ let ledCharasteristic = null;
 function onConnected() {
     document.querySelector('.connect-button').classList.add('hidden');
     document.querySelector('.color-buttons').classList.remove('hidden');
+    document.querySelector('.mic-button').classList.remove('hidden');
 }
 
 function connect() {
@@ -66,3 +67,14 @@ function blue() {
     return setColor(0, 0, 255)
         .then(() => console.log('Color set to Blue'));
 }
+
+function listen() {
+    annyang.start({ continuous: true });
+}
+
+// Voice commands
+annyang.addCommands({
+    'red': red,
+    'green': green,
+    'blue': blue
+});

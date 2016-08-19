@@ -25,6 +25,11 @@ i.material-icons {
     justify-content: space-between;
 }
 
+.mic-button {
+    margin-top: 2pc;
+    text-align: center;
+}
+
 .hidden {
     display: none;
 }
