@@ -78,3 +78,8 @@ annyang.addCommands({
     'green': green,
     'blue': blue
 });
+
+// Install service worker - for offline support
+if('serviceWorker' in navigator) {
+	navigator.serviceWorker.register('serviceworker.js');
+}
