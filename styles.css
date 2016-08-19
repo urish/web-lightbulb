@@ -1,0 +1,35 @@
+body {
+    background: #fff;
+}
+
+.app-layout {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    justify-content: center;
+    background: #fff;
+    max-width: 450px;
+}
+
+.app-layout main {
+    display: flex;
+    flex-direction: column;
+}
+
+i.material-icons {
+    max-width: 24px;
+}
+
+.color-buttons {
+    display: flex; 
+    justify-content: space-between;
+}
+
+.mic-button {
+    margin-top: 2pc;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
