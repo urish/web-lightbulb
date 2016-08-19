@@ -5,7 +5,7 @@
   "name": "Web Light Bulb",
   "short_name": "Web Light",
   "display": "standalone",
-  "start_url": "/index.html",
+  "start_url": "index.html",
   "orientation": "portrait",
   "icons": [
     {
