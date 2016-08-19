@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "live-server web",
+    "build": "sw-precache --config sw-precache-config.json",
     "deploy": "gh-pages -d web"
   },
   "repository": {
@@ -25,6 +26,7 @@
   "homepage": "https://github.com/urish/web-lightbulb#readme",
   "devDependencies": {
     "gh-pages": "^0.11.0",
-    "live-server": "1.0.0"
+    "live-server": "1.0.0",
+    "sw-precache": "^4.0.0"
   }
 }
