@@ -25,8 +25,7 @@
 'use strict';
 
 var precacheConfig = [["bulb.js","46cc256a4e800d193c0cca7b7b6a7808"],["images/icon.png","a7660976e7655e24886e14794044836d"],["index.html","9af2b607ef51847afe0dc8211e4883c3"],["manifest.json","e53794a2d8da30fa8c85eb0f64a62d4a"],["styles.css","fa351921f6cb0fa22e88ffd512046652"]];
-
-ar cacheName = 'sw-precache-v2-web-lightbulb-' + (self.registration ? self.registration.scope : '');
+var cacheName = 'sw-precache-v2-web-lightbulb-' + (self.registration ? self.registration.scope : '');
 
 
 var ignoreUrlParametersMatching = [/[\/.\/]/];
