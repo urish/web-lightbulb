@@ -28,7 +28,7 @@ var precacheConfig = [["bulb.js","46cc256a4e800d193c0cca7b7b6a7808"],["images/ic
 var cacheName = 'sw-precache-v2-web-lightbulb-' + (self.registration ? self.registration.scope : '');
 
 
-var ignoreUrlParametersMatching = [[/./]];
+var ignoreUrlParametersMatching = [/[\/.\/]/];
 
 
 
@@ -261,7 +261,7 @@ function parse(e){for(var t,r=[],n=0,o=0,a="";null!=(t=PATH_REGEXP.exec(e));){va
 
 // Runtime cache configuration, using the sw-toolbox library.
 
-toolbox.router.get(/https:\/\/.+/, toolbox.networkFirst, {});
+toolbox.router.get(/^https:\/\//, toolbox.networkFirst, {});
 
 
 
