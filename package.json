@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "live-server web",
-    "build": "sw-precache --config sw-precache-config.json",
+    "build": "node generate-service-worker.js",
     "deploy": "gh-pages -d web"
   },
   "repository": {
