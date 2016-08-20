@@ -28,7 +28,7 @@ var precacheConfig = [["bulb.js","46cc256a4e800d193c0cca7b7b6a7808"],["images/ic
 var cacheName = 'sw-precache-v2-web-lightbulb-' + (self.registration ? self.registration.scope : '');
 
 
-var ignoreUrlParametersMatching = [/[\/.\/]/];
+var ignoreUrlParametersMatching = [/./];
 
 
 
