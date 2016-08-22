@@ -1,7 +1,6 @@
 'use strict';
 
-let gattServer = null;
-let ledCharasteristic = null;
+let ledCharacteristic = null;
 
 function onConnected() {
     document.querySelector('.connect-button').classList.add('hidden');
@@ -21,7 +20,6 @@ function connect() {
             return device.gatt.connect();
         })
         .then(server => {
-            gattServer = server;
             console.log('Getting Service 0xffe5 - Light control...');
             return server.getPrimaryService(0xffe5);
         })
@@ -31,7 +29,7 @@ function connect() {
         })
         .then(characteristic => {
             console.log('All ready!');
-            ledCharasteristic = characteristic;
+            ledCharacteristic = characteristic;
             onConnected();
         })
         .catch(error => {
@@ -49,7 +47,7 @@ function setColor(red, green, blue) {
     view[4] = 0x00;
     view[5] = 0xf0;
     view[6] = 0xaa;
-    return ledCharasteristic.writeValue(buffer)
+    return ledCharacteristic.writeValue(buffer)
         .catch(err => console.log('Error when writing value! ', err));
 }
 
