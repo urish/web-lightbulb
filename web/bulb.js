@@ -38,16 +38,8 @@ function connect() {
 }
 
 function setColor(red, green, blue) {
-    var buffer = new ArrayBuffer(7);
-    var view = new Uint8Array(buffer);
-    view[0] = 0x56;
-    view[1] = red;
-    view[2] = green;
-    view[3] = blue;
-    view[4] = 0x00;
-    view[5] = 0xf0;
-    view[6] = 0xaa;
-    return ledCharacteristic.writeValue(buffer)
+    let data = new Uint8Array([0x56, red, green, blue, 0x00, 0xf0, 0xaa]);
+    return ledCharacteristic.writeValue(data)
         .catch(err => console.log('Error when writing value! ', err));
 }
 
