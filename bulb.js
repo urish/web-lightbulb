@@ -1,7 +1,6 @@
 'use strict';
 
-let gattServer = null;
-let ledCharasteristic = null;
+let ledCharacteristic = null;
 
 function onConnected() {
     document.querySelector('.connect-button').classList.add('hidden');
@@ -21,7 +20,6 @@ function connect() {
             return device.gatt.connect();
         })
         .then(server => {
-            gattServer = server;
             console.log('Getting Service 0xffe5 - Light control...');
             return server.getPrimaryService(0xffe5);
         })
@@ -31,7 +29,7 @@ function connect() {
         })
         .then(characteristic => {
             console.log('All ready!');
-            ledCharasteristic = characteristic;
+            ledCharacteristic = characteristic;
             onConnected();
         })
         .catch(error => {
@@ -40,16 +38,8 @@ function connect() {
 }
 
 function setColor(red, green, blue) {
-    var buffer = new ArrayBuffer(7);
-    var view = new Uint8Array(buffer);
-    view[0] = 0x56;
-    view[1] = red;
-    view[2] = green;
-    view[3] = blue;
-    view[4] = 0x00;
-    view[5] = 0xf0;
-    view[6] = 0xaa;
-    return ledCharasteristic.writeValue(buffer)
+    let data = new Uint8Array([0x56, red, green, blue, 0x00, 0xf0, 0xaa]);
+    return ledCharacteristic.writeValue(data)
         .catch(err => console.log('Error when writing value! ', err));
 }
 
@@ -80,6 +70,6 @@ annyang.addCommands({
 });
 
 // Install service worker - for offline support
-if('serviceWorker' in navigator) {
-	navigator.serviceWorker.register('serviceworker.js');
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('serviceworker.js');
 }
