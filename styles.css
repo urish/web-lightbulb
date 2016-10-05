@@ -25,9 +25,17 @@ i.material-icons {
     justify-content: space-between;
 }
 
+.mic-button, 
+.power-button {
+    text-align: center;
+}
+
 .mic-button {
     margin-top: 2pc;
-    text-align: center;
+} 
+
+.power-button {
+    margin-bottom: 2pc;
 }
 
 .hidden {
