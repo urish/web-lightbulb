@@ -41,3 +41,23 @@ i.material-icons {
 .hidden {
     display: none;
 }
+
+.title-and-connect {
+    display: inherit;
+}
+
+.connect-another-icon {
+    top: 17px !important;
+    left: 4px !important;
+    margin-left: -10px !important;
+    position: relative !important;
+    float: right !important;
+}
+
+.connect-another {
+    margin-left: 10px;
+}
+
+#on-off {
+    background-color: #fff;
+}
