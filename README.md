@@ -10,3 +10,5 @@ Read about this project in my blog post:
 Currently works only with Chrome 53 ([Beta Channel](https://www.google.com/chrome/browser/beta.html)) or newer. In Chrome Stable, you will have to enable Web Bluetooth in chrome://flags first.
 
 ➡ [Online Demo](https://urish.github.io/web-lightbulb)
+
+➡ [Improved version by Sagi363](https://github.com/Sagi363/smart-lightbulb)
