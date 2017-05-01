@@ -113,6 +113,12 @@ annyang.addCommands({
     'red': red,
     'green': green,
     'blue': blue,
+    'yellow': () => setColor(127, 127, 0),
+    'orange': () => setColor(127, 35, 0),
+    'purple': () => setColor(127, 0, 127),
+    'pink': () => setColor(180, 12, 44),
+    'cyan': () => setColor(0, 127, 127),
+    'white': () => setColor(127, 127, 127),
     'turn on': powerOn,
     'turn off': powerOff
 });
