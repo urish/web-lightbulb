@@ -8,7 +8,14 @@ function onConnected() {
     document.querySelector('.color-buttons').classList.remove('hidden');
     document.querySelector('.mic-button').classList.remove('hidden');
     document.querySelector('.power-button').classList.remove('hidden');
-    turnedOn = false;
+    turnedOn = true;
+}
+
+function onDisconnected() {
+    document.querySelector('.connect-button').classList.remove('hidden');
+    document.querySelector('.color-buttons').classList.add('hidden');
+    document.querySelector('.mic-button').classList.add('hidden');
+    document.querySelector('.power-button').classList.add('hidden');
 }
 
 function connect() {
@@ -20,6 +27,7 @@ function connect() {
         .then(device => {
             console.log('> Found ' + device.name);
             console.log('Connecting to GATT Server...');
+            device.addEventListener('gattserverdisconnected', onDisconnected)
             return device.gatt.connect();
         })
         .then(server => {
