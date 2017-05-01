@@ -1,14 +1,21 @@
 'use strict';
 
 let ledCharacteristic = null;
-let turnedOn = false;
+let poweredOn = false;
 
 function onConnected() {
     document.querySelector('.connect-button').classList.add('hidden');
     document.querySelector('.color-buttons').classList.remove('hidden');
     document.querySelector('.mic-button').classList.remove('hidden');
     document.querySelector('.power-button').classList.remove('hidden');
-    turnedOn = false;
+    poweredOn = true;
+}
+
+function onDisconnected() {
+    document.querySelector('.connect-button').classList.remove('hidden');
+    document.querySelector('.color-buttons').classList.add('hidden');
+    document.querySelector('.mic-button').classList.add('hidden');
+    document.querySelector('.power-button').classList.add('hidden');
 }
 
 function connect() {
@@ -20,6 +27,7 @@ function connect() {
         .then(device => {
             console.log('> Found ' + device.name);
             console.log('Connecting to GATT Server...');
+            device.addEventListener('gattserverdisconnected', onDisconnected)
             return device.gatt.connect();
         })
         .then(server => {
@@ -40,39 +48,39 @@ function connect() {
         });
 }
 
-function turnOn() {
+function powerOn() {
   let data = new Uint8Array([0xcc, 0x23, 0x33]);
   return ledCharacteristic.writeValue(data)
-      .catch(err => console.log('Error when turning on! ', err))
+      .catch(err => console.log('Error when powering on! ', err))
       .then(() => {
-          turnedOn = true;
+          poweredOn = true;
           toggleButtons();
       });
 }
 
-function turnOff() {
+function powerOff() {
   let data = new Uint8Array([0xcc, 0x24, 0x33]);
   return ledCharacteristic.writeValue(data)
-      .catch(err => console.log('Error when turning off! ', err))
+      .catch(err => console.log('Error when switching off! ', err))
       .then(() => {
-          turnedOn = false;
+          poweredOn = false;
           toggleButtons();
       });
 }
 
-function turnOnOff() {
-  if (turnedOn) {
-    turnOff();
-  } else {
-    turnOn();
-  }
+function togglePower() {
+    if (poweredOn) {
+        powerOff();
+    } else {
+        powerOn();
+    }
 }
 
 function toggleButtons() {
-  Array.from(document.querySelectorAll('.color-buttons button')).forEach(function(colorButton) {
-    colorButton.disabled = !turnedOn;
-  });
-  document.querySelector('.mic-button button').disabled = !turnedOn;
+    Array.from(document.querySelectorAll('.color-buttons button')).forEach(function(colorButton) {
+      colorButton.disabled = !poweredOn;
+    });
+    document.querySelector('.mic-button button').disabled = !poweredOn;
 }
 
 function setColor(red, green, blue) {
@@ -105,8 +113,8 @@ annyang.addCommands({
     'red': red,
     'green': green,
     'blue': blue,
-    'turn on': turnOn,
-    'turn off': turnOff
+    'turn on': powerOn,
+    'turn off': powerOff
 });
 
 // Install service worker - for offline support
