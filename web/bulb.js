@@ -69,18 +69,18 @@ function turnOff() {
 }
 
 function turnOnOff() {
-  if (turnedOn) {
-    turnOff();
-  } else {
-    turnOn();
-  }
+    if (turnedOn) {
+        turnOff();
+    } else {
+        turnOn();
+    }
 }
 
 function toggleButtons() {
-  Array.from(document.querySelectorAll('.color-buttons button')).forEach(function(colorButton) {
-    colorButton.disabled = !turnedOn;
-  });
-  document.querySelector('.mic-button button').disabled = !turnedOn;
+    Array.from(document.querySelectorAll('.color-buttons button')).forEach(function(colorButton) {
+      colorButton.disabled = !turnedOn;
+    });
+    document.querySelector('.mic-button button').disabled = !turnedOn;
 }
 
 function setColor(red, green, blue) {
