@@ -1,14 +1,14 @@
 'use strict';
 
 let ledCharacteristic = null;
-let turnedOn = false;
+let poweredOn = false;
 
 function onConnected() {
     document.querySelector('.connect-button').classList.add('hidden');
     document.querySelector('.color-buttons').classList.remove('hidden');
     document.querySelector('.mic-button').classList.remove('hidden');
     document.querySelector('.power-button').classList.remove('hidden');
-    turnedOn = true;
+    poweredOn = true;
 }
 
 function onDisconnected() {
@@ -48,39 +48,39 @@ function connect() {
         });
 }
 
-function turnOn() {
+function powerOn() {
   let data = new Uint8Array([0xcc, 0x23, 0x33]);
   return ledCharacteristic.writeValue(data)
-      .catch(err => console.log('Error when turning on! ', err))
+      .catch(err => console.log('Error when powering on! ', err))
       .then(() => {
-          turnedOn = true;
+          poweredOn = true;
           toggleButtons();
       });
 }
 
-function turnOff() {
+function powerOff() {
   let data = new Uint8Array([0xcc, 0x24, 0x33]);
   return ledCharacteristic.writeValue(data)
-      .catch(err => console.log('Error when turning off! ', err))
+      .catch(err => console.log('Error when switching off! ', err))
       .then(() => {
-          turnedOn = false;
+          poweredOn = false;
           toggleButtons();
       });
 }
 
-function turnOnOff() {
-    if (turnedOn) {
-        turnOff();
+function togglePower() {
+    if (poweredOn) {
+        powerOff();
     } else {
-        turnOn();
+        powerOn();
     }
 }
 
 function toggleButtons() {
     Array.from(document.querySelectorAll('.color-buttons button')).forEach(function(colorButton) {
-      colorButton.disabled = !turnedOn;
+      colorButton.disabled = !poweredOn;
     });
-    document.querySelector('.mic-button button').disabled = !turnedOn;
+    document.querySelector('.mic-button button').disabled = !poweredOn;
 }
 
 function setColor(red, green, blue) {
@@ -113,8 +113,8 @@ annyang.addCommands({
     'red': red,
     'green': green,
     'blue': blue,
-    'turn on': turnOn,
-    'turn off': turnOff
+    'turn on': powerOn,
+    'turn off': powerOff
 });
 
 // Install service worker - for offline support
